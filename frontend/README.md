@@ -4,7 +4,7 @@
 
 ## Resume Format Considerations
 
-I use my own resume template found on Canva. [See here](./docs/resume.png)
+I use my own resume template found on Canva.
 
 ## My Resume Format Generation
 
@@ -18,8 +18,20 @@ Please don't use a css framework.
 Please use the least amount of css tags.
 ```
 
-This is [generated output](./docs/resume-minimal.html) by Gemini.
-
 ## Styling
 
 I use GenAI to do the CSS part. 
+
+## Hosting Website Locally
+
+I have a small server running [Dokploy](https://dokploy.com/) so whenever I push to my GitHub repository, it automatically pulls and deploys the latest version of my app.
+I had to dockerize the app and split it into microservices.
+
+Instead, I use 
+```sh
+# Compile Website in root directory
+sudo npm i http-server -g
+# Then run the server
+cd frontend
+http-server
+```
