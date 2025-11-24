@@ -25,7 +25,7 @@ I use GenAI to do the CSS part.
 ## Hosting Website Locally
 
 I have a small server running [Dokploy](https://dokploy.com/) so whenever I push to my GitHub repository, it automatically pulls and deploys the latest version of my app.
-I had to dockerize the app and split it into microservices.
+I had to dockerize the app and split it into microservices. You can find a Dockerfile in the frontend directory. It was the best option that I had to host it locally.
 
 Instead, I use 
 ```sh
