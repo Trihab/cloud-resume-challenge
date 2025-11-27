@@ -1,5 +1,7 @@
-import React from "react";
 import 'stylesheets/pages/resume.css'
+
+import resumeData from "data/ResumeData";
+import ResumeHeader from "components/resume/ResumeHeader";
 
 export default function ResumePage() {
     return(
@@ -10,14 +12,7 @@ export default function ResumePage() {
                     <div className="photo-container">
                         <img src="/src/assets/img/photo_pro.png" alt="Tristan Habert"/>
                     </div>
-                    
-                    <div className="header-text">
-                        <h1>Tristan Habert</h1>
-                        <h2>Cloud DevOps</h2>
-                        <div className="contact">
-                            Paris | <a href="mailto:habert.tristan@gmail.com">habert.tristan@gmail.com</a> | <a href="https://www.linkedin.com/in/tristan-habert-059649213/" target="_blank">LinkedIn</a>
-                        </div>
-                    </div>
+                    <ResumeHeader data={resumeData.person}></ResumeHeader>
                 </div>
             </header>
 
