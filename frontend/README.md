@@ -35,3 +35,8 @@ sudo npm i http-server -g
 cd frontend
 http-server
 ```
+
+## Frontend Framework Consideration
+
+I used React and Vite.js because they are the most popular at the moment.
+It's interesting to learn them maybe for futur project just so I can read and understand better code.
