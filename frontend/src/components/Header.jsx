@@ -4,8 +4,8 @@ export default function Header() {
     return(
         <nav>
             <a href="/">Home</a>
-            <a href="/resume.html">Resume</a>
-            <a href="/projects.html">Projects</a>
+            <a href="/resume">Resume</a>
+            <a href="/projects">Projects</a>
         </nav>
     );
 }

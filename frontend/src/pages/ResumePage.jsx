@@ -1,4 +1,5 @@
 import React from "react";
+import 'stylesheets/pages/resume.css'
 
 export default function ResumePage() {
     return(
