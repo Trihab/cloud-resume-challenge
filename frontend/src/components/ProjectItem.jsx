@@ -5,7 +5,7 @@ export default function ProjectItem(props) {
     const project = props.project;
     return(
         <>
-        <div className="project">
+        <div className="project-card">
             <h2>{project.name}</h2>
             <img src={project.thumbnail} alt="" />
             <p>{project.description}</p>

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "projet1",
+    "name": "Projet 1",
+    "thumbnail": "https://placehold.co/320x200",
+    "description": "My really ambitious project.",
+    "body_html": "<h1>Frontend Technical Specification</h1>\n<ul>\n<li>Create a static website that serves an html resume.</li>\n</ul>\n<h2>Resume Format Considerations</h2>\n<p>I use my own resume template found on Canva.</p>"
+  },
+  {
+    "id": "projet2",
+    "name": "Projet 2",
+    "thumbnail": "https://placehold.co/320x200",
+    "description": "My really ambitious project.",
+    "body_html": "<h1>My Project 2</h1>"
+  }
+]

@@ -1,87 +1,215 @@
-/* Conteneur parent de la liste de projets */
-.projects {
+/* =========================================
+   VUE LISTE (La grille de projets)
+   Utilise ces classes dans ta boucle .map()
+   ========================================= */
+
+/* Le conteneur grille */
+.projects-grid {
   display: grid;
-  /* Création automatique de colonnes responsive */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px; /* Espace entre les cartes */
-  padding: 20px;
+  gap: 30px;
+  padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
-/* Style de la carte projet */
-.project {
+
+/* LA CARTE INDIVIDUELLE (anciennement .project)
+   ⚠️ Attention : Change <div className="project"> par <div className="project-card"> dans ta boucle */
+.project-card {
   display: flex;
-  flex-direction: column; /* Empile les éléments verticalement */
-  align-items: center;    /* Centre les éléments horizontalement (img, btn) */
-  text-align: center;     /* Centre le texte (h2, p) */
-  
-  /* Apparence visuelle */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Ombre légère */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  
-  /* Gestion de la taille et du responsive */
-  width: 100%;           /* Prend toute la largeur disponible sur mobile */
-  max-width: 350px;      /* Empêche la carte d'être trop large sur PC */
-  margin: 0 auto;        /* Centre la carte elle-même si elle est seule */
+  width: 100%;
+  max-width: 350px; /* Taille restreinte pour la carte */
+  margin: 0 auto;
 }
 
-/* Effet au survol de la souris */
-.project:hover {
-  transform: translateY(-5px); /* La carte "monte" légèrement */
+.project-card:hover {
+  transform: translateY(-5px);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Titre du projet */
-.project h2 {
+.project-card h2 {
   font-size: 1.5rem;
   margin: 0 0 16px 0;
   color: #333;
 }
 
-/* Image du projet */
-.project img {
-  width: 100%;           /* L'image s'adapte à la largeur de la carte */
-  height: 200px;         /* Hauteur fixe pour l'uniformité */
-  object-fit: cover;     /* Recadre l'image sans la déformer */
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 8px;
   margin-bottom: 16px;
 }
 
-/* Description */
-.project p {
+.project-card p {
   font-size: 1rem;
   color: #666;
   line-height: 1.5;
-  margin-bottom: 24px;   /* Espace avant le bouton */
+  margin-bottom: 24px;
 }
 
-/* Lien (Bouton) */
-.project a {
+/* Le bouton "Discover" spécifique à la carte */
+.project-card a {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #2c3e50; /* Bleu standard (à changer selon ton thème) */
+  background-color: #2c3e50;
   color: white;
   text-decoration: none;
   font-weight: 600;
   border-radius: 6px;
   transition: background-color 0.3s ease;
+  margin-top: auto; /* Pousse le bouton vers le bas si le texte varie */
 }
 
-.project a:hover {
-  background-color: #0056b3; /* Bleu plus foncé au survol */
+.project-card a:hover {
+  background-color: #0056b3;
 }
 
-.project a {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #2c3e50; /* Bleu standard (à changer selon ton thème) */
-  color: white;
+/* =========================================
+   VUE DÉTAIL (La page unique avec Markdown)
+   Utilise <div className="project-page"> pour la page seule
+   ========================================= */
+
+.project-page {
+  max-width: 800px;       /* Largeur idéale pour la lecture */
+  margin: 0 auto;         /* Centrage de la page */
+  padding: 40px 20px;
+  color: #333;
+  text-align: left;       /* Lecture alignée à gauche */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Lien de retour (Back to projects) */
+.project-page > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
   text-decoration: none;
-  font-weight: 600;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+
+.project-page > a:hover {
+  color: #007bff;
+}
+
+/* En-tête de la page détail */
+.project-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: #111;
+}
+
+.project-page > p {
+  font-size: 1.25rem; /* Un peu plus grand pour l'intro */
+  color: #555;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* =========================================
+   MARKDOWN STYLING
+   Styles appliqués au contenu injecté via dangerouslySetInnerHTML
+   ========================================= */
+
+.markdown {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #2c3e50;
+}
+
+.markdown > * {
+  margin-bottom: 1.5rem;
+}
+
+.markdown h2 {
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: #222;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+}
+
+.markdown h3 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  color: #333;
+}
+
+.markdown ul, .markdown ol {
+  padding-left: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.markdown li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown a {
+  color: #007bff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Blocs de citation */
+.markdown blockquote {
+  border-left: 4px solid #2c3e50;
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  font-style: italic;
+  color: #555;
+}
+
+/* Images dans le markdown */
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 2rem auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Blocs de code (Snippet) */
+.markdown pre {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto; /* Scroll horizontal si code trop long */
+  font-family: 'Fira Code', monospace;
+  margin: 2rem 0;
+}
+
+.markdown code {
+  font-family: 'Fira Code', monospace;
+  background-color: #f1f3f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #d63384;
+}
+
+/* Le code à l'intérieur d'un bloc pre ne doit pas être rose */
+.markdown pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
 }
