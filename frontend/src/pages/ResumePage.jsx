@@ -2,20 +2,13 @@ import 'stylesheets/pages/resume.css'
 
 import resumeData from "data/ResumeData";
 import ResumeHeader from "components/resume/ResumeHeader";
+import ResumeSectionsCertif from "components/resume/ResumeSectionsCertif";
 
 export default function ResumePage() {
     return(
         <>
         <div className="resume-container">
-            <header>
-                <div className="profile-wrapper">
-                    <div className="photo-container">
-                        <img src="/src/assets/img/photo_pro.png" alt="Tristan Habert"/>
-                    </div>
-                    <ResumeHeader data={resumeData.person}></ResumeHeader>
-                </div>
-            </header>
-
+            <ResumeHeader data={resumeData.person}></ResumeHeader>
             <section>
                 <h3>Expériences Professionnelles</h3>
 
@@ -129,23 +122,7 @@ export default function ResumePage() {
             </section>
 
             <section>
-                <h3>Certifications & Divers</h3>
-                <div className="grid-container">
-                    <div>
-                        <strong>Certifications</strong>
-                        <ul>
-                            <li>Google Cloud Digital Leader (20/07/2025)</li>
-                            <li>GCP Associate Cloud Engineer (En préparation)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <strong>Langues & Intérêts</strong>
-                        <ul>
-                            <li>Langues: Anglais</li>
-                            <li>Intérêts: Formule 1, Jeux-vidéo, Sciences</li>
-                        </ul>
-                    </div>
-                </div>
+                <ResumeSectionsCertif data={resumeData.sections}></ResumeSectionsCertif>
             </section>
             
         </div>
