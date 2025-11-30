@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom"
 import photo_pro from "images/photo_pro2.JPEG"
 
 export default function ProjectsPage() {
-    const data_me = ResumeData.person
-    const data_cert = ResumeData.sections
+    const data_me = ResumeData.person;
+    const data_cert = ResumeData.sections;
     return(
         <>
         <div className="home-container">
