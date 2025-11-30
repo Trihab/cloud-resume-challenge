@@ -32,10 +32,10 @@ export default function ProjectsPage() {
                     </div>
                 </div>
             </section>
-
+            <hr />
             {/* --- SECTION INFO : Certifications & Skills --- */}
             <section className="stats-section">
-                <h3 className="section-title">My Certifications</h3>
+                <h3 className="section-title" id="certif-home-h3">My Certifications</h3>
                 
                 <div className="certs-grid">
                     {data_cert.certif.map((cert, index) => (

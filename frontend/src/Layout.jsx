@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Header from 'components/Header'
 import 'stylesheets/default.css'
 import { Outlet, useLocation } from 'react-router'
+import Footer from "components/Footer"
 
 export default function Layout() {
   const location = useLocation();
@@ -26,6 +27,7 @@ export default function Layout() {
     <>
       <Header></Header>
       <Outlet />
+      <Footer/>
     </>
   )
 }

@@ -31,7 +31,7 @@
 .greeting {
     display: block;
     font-size: 1.2rem;
-    color: #007bff; /* Bleu accent */
+    color: #133b2c; /* Bleu accent */
     font-weight: 600;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -43,7 +43,7 @@
     font-weight: 800;
     margin: 0;
     line-height: 1.1;
-    color: #2c3e50; /* Bleu nuit */
+    color: #133b2c; /* Bleu nuit */
 }
 
 .role {
@@ -75,25 +75,25 @@
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background-color: #2C5545;
     color: white;
-    border: 2px solid #007bff;
+    border: 2px solid #2C5545;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: #133b2c;
+    border-color: #133b2c;
     transform: translateY(-2px);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: #2c3e50;
-    border: 2px solid #2c3e50;
+    color: #2C5545;
+    border: 2px solid #2C5545;
 }
 
 .btn-secondary:hover {
-    background-color: #2c3e50;
+    background-color: #2C5545;
     color: white;
 }
 
@@ -112,8 +112,8 @@
     border-radius: 50%;
     
     /* Le style de bordure et d'ombre */
-    border: 8px solid #2c3e50;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    /* border: 8px solid #ffffff; */
+    box-shadow: 20px 20px 20px #2C55454d;
 
     /* On retire les propriétés qui servaient à centrer le texte (plus besoin) :
        display: flex; align-items: center; justify-content: center; font-size... background... */
@@ -133,27 +133,25 @@
 /* =========================================
    STATS / CERTIFICATIONS SECTION
    ========================================= */
+hr {
+    border: solid 1px #133b2c;
+}
+
 .stats-section {
     padding: 60px 0;
-    border-top: 1px solid #eee;
 }
 
 .section-title {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #2c3e50;
+    color: #133b2c;
     position: relative;
     display: inline-block;
+    background-color: transparent;
 }
 
-/* Petite ligne sous le titre */
-.section-title::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 3px;
-    background-color: #007bff;
-    margin-top: 8px;
+#certif-home-h3 {
+    border-left: none;
 }
 
 .certs-grid {
@@ -175,7 +173,7 @@
 
 .cert-card:hover {
     transform: translateY(-3px);
-    border-color: #007bff;
+    border-color: #2C5545;
 }
 
 /* .cert-icon {

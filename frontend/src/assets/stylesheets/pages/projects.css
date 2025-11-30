@@ -61,7 +61,7 @@
 .project-card a {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #2c3e50;
+  background-color: #2C5545;
   color: white;
   text-decoration: none;
   font-weight: 600;
@@ -71,7 +71,7 @@
 }
 
 .project-card a:hover {
-  background-color: #0056b3;
+  background-color: #133b2c;
 }
 
 /* =========================================
@@ -101,7 +101,7 @@
 }
 
 .project-page > a:hover {
-  color: #007bff;
+  color: #133b2c;
 }
 
 /* En-tête de la page détail */
@@ -129,7 +129,7 @@
 .markdown {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: #2c3e50;
+  color: #000000;
 }
 
 .markdown > * {
@@ -169,7 +169,7 @@
 
 /* Blocs de citation */
 .markdown blockquote {
-  border-left: 4px solid #2c3e50;
+  border-left: 4px solid #2C5545;
   margin: 2rem 0;
   padding: 1rem 1.5rem;
   background-color: #f8f9fa;
@@ -235,7 +235,7 @@
 .view_counter .count {
     font-weight: 700;
     font-size: 1.2rem;
-    color: #2c3e50;
+    color: #2C5545;
 }
 
 .view_counter .label {
@@ -257,14 +257,14 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: #007bff;
+    color: #2C5545;
 }
 
 .like-btn:hover {
-    background-color: #007bff;
+    background-color: #133b2c;
     color: white;
     transform: scale(1.1);
-    border-color: #007bff;
+    border-color: #133b2c;
 }
 
 .like-btn:active {
