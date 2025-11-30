@@ -4,7 +4,7 @@ import 'stylesheets/pages/home.css'
 export default function HomePage() {
     return(
         <>
-            Home
+            News
         </>
     )
 }

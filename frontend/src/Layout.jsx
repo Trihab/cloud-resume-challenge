@@ -9,7 +9,7 @@ export default function Layout() {
   let pageName = ''
   useEffect(() => {
     if(location.pathname === "/"){
-      pageName = 'home'
+      pageName = 'news'
     }else if(location.pathname === "/resume"){
       pageName = "resume"
     }else if(location.pathname === "/projects"){
