@@ -1,5 +1,5 @@
 import React from "react";
-import photo_pro from "images/photo_pro.png"
+import photo_pro from "images/photo_pro2.JPEG"
 export default function ResumeHeader(props) {
 	const me_name = props.data.name;
 	const me_job = props.data.job_title;
