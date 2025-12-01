@@ -25,9 +25,13 @@ export default function Layout() {
 
   return (
     <>
+    <div className="app-wrapper">
       <Header></Header>
-      <Outlet />
+      <div className="main-content">
+        <Outlet />
+      </div>
       <Footer/>
+    </div>
     </>
   )
 }

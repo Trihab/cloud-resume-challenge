@@ -23,6 +23,17 @@ body {
     flex-direction: column;
 }
 
+/* Permet au footer de rester en bas de l'écran même si le contenu est court */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Prend toute la hauteur de l'écran */
+}
+
+.main-content {
+  flex: 1; /* Prend tout l'espace disponible, poussant le footer vers le bas */
+}
+
 /* ===========================
    NAVIGATION BAR
    =========================== */
