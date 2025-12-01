@@ -116,13 +116,15 @@ html::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px; /* Zone de clic plus confortable */
+    
+    /* CORRECTION ICI */
+    width: 48px;  /* 24px d'icone + 12px padding gauche + 12px padding droite = 48px */
+    height: 48px; /* On s'assure que c'est bien carré */
+    padding: 0;   /* On retire le padding car Flexbox centre déjà l'icone au milieu */
+    
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    width: 24px;  /* Force une taille carrée pour le conteneur */
-    height: 24px;
 }
-
 .social-links a:hover {
     color: white;
     background-color: #133b2c;
