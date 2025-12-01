@@ -1,20 +1,19 @@
 /* =========================================
    VUE LISTE (La grille de projets)
-   Utilise ces classes dans ta boucle .map()
    ========================================= */
 
 /* Le conteneur grille */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Modification ici : 280px au lieu de 300px permet de passer sur les petits iPhones */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* LA CARTE INDIVIDUELLE (anciennement .project)
-   ⚠️ Attention : Change <div className="project"> par <div className="project-card"> dans ta boucle */
+/* LA CARTE INDIVIDUELLE */
 .project-card {
   display: flex;
   flex-direction: column;
@@ -27,7 +26,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
-  max-width: 350px; /* Taille restreinte pour la carte */
+  max-width: 350px;
   margin: 0 auto;
 }
 
@@ -57,7 +56,7 @@
   margin-bottom: 24px;
 }
 
-/* Le bouton "Discover" spécifique à la carte */
+/* Le bouton "Discover" */
 .project-card a {
   display: inline-block;
   padding: 10px 20px;
@@ -67,7 +66,7 @@
   font-weight: 600;
   border-radius: 6px;
   transition: background-color 0.3s ease;
-  margin-top: auto; /* Pousse le bouton vers le bas si le texte varie */
+  margin-top: auto;
 }
 
 .project-card a:hover {
@@ -75,20 +74,19 @@
 }
 
 /* =========================================
-   VUE DÉTAIL (La page unique avec Markdown)
-   Utilise <div className="project-page"> pour la page seule
+   VUE DÉTAIL (Page Markdown)
    ========================================= */
 
 .project-page {
-  max-width: 800px;       /* Largeur idéale pour la lecture */
-  margin: 0 auto;         /* Centrage de la page */
+  max-width: 800px;
+  margin: 0 auto;
   padding: 40px 20px;
   color: #333;
-  text-align: left;       /* Lecture alignée à gauche */
+  text-align: left;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* Lien de retour (Back to projects) */
+/* Lien de retour */
 .project-page > a {
   display: inline-flex;
   align-items: center;
@@ -106,14 +104,15 @@
 
 /* En-tête de la page détail */
 .project-page h1 {
-  font-size: 2.5rem;
+  font-size: 2.5rem; /* Sera réduit sur mobile via Media Query plus bas */
   margin-bottom: 1rem;
   line-height: 1.2;
   color: #111;
+  word-wrap: break-word; /* Évite que les mots longs cassent le layout */
 }
 
 .project-page > p {
-  font-size: 1.25rem; /* Un peu plus grand pour l'intro */
+  font-size: 1.25rem;
   color: #555;
   margin-bottom: 3rem;
   border-bottom: 1px solid #eee;
@@ -123,7 +122,6 @@
 
 /* =========================================
    MARKDOWN STYLING
-   Styles appliqués au contenu injecté via dangerouslySetInnerHTML
    ========================================= */
 
 .markdown {
@@ -165,9 +163,9 @@
   color: #007bff;
   text-decoration: underline;
   text-underline-offset: 3px;
+  word-break: break-all; /* Important pour les liens longs sur mobile */
 }
 
-/* Blocs de citation */
 .markdown blockquote {
   border-left: 4px solid #2C5545;
   margin: 2rem 0;
@@ -175,9 +173,9 @@
   background-color: #f8f9fa;
   font-style: italic;
   color: #555;
+  border-radius: 0 8px 8px 0; /* Petit arrondi esthétique */
 }
 
-/* Images dans le markdown */
 .markdown img {
   max-width: 100%;
   height: auto;
@@ -187,15 +185,15 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Blocs de code (Snippet) */
 .markdown pre {
   background-color: #1e1e1e;
   color: #d4d4d4;
   padding: 1.5rem;
   border-radius: 8px;
-  overflow-x: auto; /* Scroll horizontal si code trop long */
+  overflow-x: auto; /* CRUCIAL : Permet de scroller le code horizontalement sur mobile */
   font-family: 'Fira Code', monospace;
   margin: 2rem 0;
+  -webkit-overflow-scrolling: touch; /* Scroll fluide sur iOS */
 }
 
 .markdown code {
@@ -205,24 +203,30 @@
   border-radius: 4px;
   font-size: 0.9em;
   color: #d63384;
+  word-break: break-word;
 }
 
-/* Le code à l'intérieur d'un bloc pre ne doit pas être rose */
 .markdown pre code {
   background-color: transparent;
   color: inherit;
   padding: 0;
+  word-break: normal; /* Dans un bloc pre, on ne veut pas couper les mots n'importe comment */
 }
 
+/* =========================================
+   COMPTEUR DE VUES
+   ========================================= */
 
 .view_counter_container {
     display: inline-flex;
     align-items: center;
-    gap: 15px; /* Espace entre le compteur et le bouton */
+    gap: 15px;
     background-color: #f8f9fa;
     padding: 10px 20px;
-    border-radius: 50px; /* Forme de pilule */
+    border-radius: 50px;
     border: 1px solid #e0e0e0;
+    max-width: 100%; /* Évite le débordement */
+    box-sizing: border-box;
 }
 
 .view_counter {
@@ -245,11 +249,10 @@
     letter-spacing: 1px;
 }
 
-/* Style du bouton "Like/Increment" */
 .like-btn {
     background: white;
     border: 1px solid #ddd;
-    border-radius: 50%; /* Bouton rond */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     display: flex;
@@ -258,6 +261,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
     color: #2C5545;
+    flex-shrink: 0; /* Empêche le bouton d'être écrasé */
 }
 
 .like-btn:hover {
@@ -271,7 +275,6 @@
     transform: scale(0.95);
 }
 
-/* Petit effet quand ça charge */
 .like-btn.loading {
     opacity: 0.6;
     cursor: not-allowed;
@@ -288,6 +291,63 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px; /* Un peu plus d'espace */
   margin-top: 10px;
+}
+
+/* =========================================
+   📱 MEDIA QUERIES (RESPONSIVE)
+   C'est ici que la magie opère pour le mobile
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* GRILLE : Moins d'espace sur les côtés */
+    .projects-grid {
+        gap: 20px;
+        padding: 30px 15px; /* Marges latérales réduites */
+    }
+
+    /* CARTE : Prend toute la largeur disponible */
+    .project-card {
+        max-width: 100%; 
+    }
+
+    /* PAGE DÉTAIL : Réduction des tailles de police */
+    .project-page {
+        padding: 20px 15px;
+    }
+
+    .project-page h1 {
+        font-size: 1.8rem; /* Titre plus petit */
+    }
+
+    .project-page > p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    /* MARKDOWN : Ajustements pour la lisibilité mobile */
+    .markdown h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .markdown h3 {
+        font-size: 1.25rem;
+    }
+
+    .markdown blockquote {
+        margin: 1.5rem 0;
+        padding: 0.8rem 1rem;
+    }
+
+    /* COMPTEUR : Ajustement pour petits écrans */
+    .view_counter_container {
+        padding: 8px 15px;
+        gap: 10px;
+    }
+
+    .view_counter .count {
+        font-size: 1rem;
+    }
 }
