@@ -1,0 +1,46 @@
+---
+- name: Deploy Portfolio Infrastructure
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - vaults/prod.yml
+  vars:
+    gcp_key_temp_path: "{{ playbook_dir }}/gcp_deploy_key.json"
+    portfolio_bucket_name: "thbt.ovh"
+  tasks:
+    - name: Infrastructure Deployment Block
+      block:
+        - name: Ensure Terraform is installed
+          ansible.builtin.command: terraform --version
+          register: tf_check
+          changed_when: false
+          failed_when: tf_check.rc != 0
+
+        - name: Create temporary GCP credential file
+          ansible.builtin.copy:
+            content: "{{ vault_gcp_key }}"
+            dest: "{{ gcp_key_temp_path }}"
+            mode: '0600' 
+          no_log: true
+
+        # 2. Run Terraform using that file
+        - name: Apply Terraform Configuration
+          community.general.terraform:
+            project_path: "{{ playbook_dir }}/../../gcp"
+            state: present
+            force_init: true
+            variables:
+              bucket_name: "{{ portfolio_bucket_name }}"
+          environment:
+            GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_key_temp_path }}"
+          register: terraform_output
+
+        - name: Show Terraform Output
+          ansible.builtin.debug:
+            msg: "{{ terraform_output.stdout }}"
+      always:
+        - name: Remove temporary GCP credential file
+          ansible.builtin.file:
+            path: "{{ gcp_key_temp_path }}"
+            state: absent
