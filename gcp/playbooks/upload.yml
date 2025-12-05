@@ -1,0 +1,115 @@
+---
+- name: Build Vite App and Upload to GCS
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - vaults/prod.yml
+  vars:
+    # --- CONFIGURATION ---
+    # Chemin vers la racine de votre projet Vue/Vite (là où est package.json)
+    project_root: "{{ playbook_dir }}/../../frontend"
+    build_dir: "{{ project_root }}/dist"
+    # Nom du bucket (SANS points si possible, sinon voir étape précédente)
+    portfolio_bucket_name: "thbt.ovh"
+    # Chemin temporaire pour la clé
+    gcp_key_temp_path: "{{ playbook_dir }}/gcp_pipeline_key.json"
+
+  tasks:
+
+    # ==========================================
+    # ÉTAPE 1 : INSTALLATION DE GCLOUD CLI
+    # ==========================================
+    - name: Check if gcloud is installed
+      ansible.builtin.command: gcloud --version
+      register: gcloud_check
+      ignore_errors: true
+      changed_when: false
+
+    - name: Install Google Cloud SDK (Debian/Ubuntu)
+      block:
+        - name: Install prereqs
+          ansible.builtin.apt:
+            pkg:
+              - apt-transport-https
+              - ca-certificates
+              - gnupg
+              - curl
+            state: present
+            update_cache: yes
+          become: true
+
+        - name: Add Google Cloud public key
+          ansible.builtin.shell: |
+            curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg --yes
+          args:
+            creates: /usr/share/keyrings/cloud.google.gpg
+          become: true
+
+        - name: Add Google Cloud CLI repository
+          ansible.builtin.apt_repository:
+            repo: "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main"
+            filename: google-cloud-sdk
+            state: present
+          become: true
+
+        - name: Install google-cloud-cli
+          ansible.builtin.apt:
+            name: google-cloud-cli
+            state: present
+            update_cache: yes
+          become: true
+      when: gcloud_check.rc != 0
+      tags: install_gcloud
+
+    # ==========================================
+    # ÉTAPE 2 : BUILD VITEJS (Node)
+    # ==========================================
+    - name: Build Vite Application
+      block:
+        - name: Install Node Dependencies (npm install)
+          community.general.npm:
+            path: "{{ project_root }}"
+            ci: yes
+        
+        - name: Build Project (npm run build)
+          ansible.builtin.command:
+            cmd: npm run build
+            chdir: "{{ project_root }}"
+      tags: build
+
+    # ==========================================
+    # ÉTAPE 3 : UPLOAD VERS GCS
+    # ==========================================
+    - name: Deploy to Cloud Storage
+      block:
+        # 1. Création fichier clé temporaire
+        - name: Create temporary GCP credential file
+          ansible.builtin.copy:
+            content: "{{ vault_gcp_key }}"
+            dest: "{{ gcp_key_temp_path }}"
+            mode: '0600'
+          no_log: true
+
+        # 2. Authentification explicite de gcloud
+        - name: Activate Service Account in gcloud
+          ansible.builtin.command:
+            cmd: "gcloud auth activate-service-account --key-file={{ gcp_key_temp_path }}"
+          changed_when: false
+
+        # 3. Synchronisation ultra-rapide (Rsync supprime aussi les vieux fichiers)
+        - name: Sync Build folder to Bucket
+          ansible.builtin.command:
+            cmd: "gcloud storage rsync -r {{ build_dir }} gs://{{ portfolio_bucket_name }}"
+      
+      always:
+        - name: Remove temporary GCP credential file
+          ansible.builtin.file:
+            path: "{{ gcp_key_temp_path }}"
+            state: absent
+        
+        - name: Revoke gcloud auth
+          ansible.builtin.command: "gcloud auth revoke --all"
+          ignore_errors: true
+          changed_when: false
