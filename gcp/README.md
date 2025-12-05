@@ -21,3 +21,7 @@ source ~/.bashrc
 ## Ansible Configuration
 
 I created a vault to store the gcp service account key so that I could safely push it to my git repository. My ansible playbook create a temp file for the credential. My gcp credential file is now stored in my ansible vault file.
+
+## Domain Ownership
+
+I had to verify the ownership of my domain through Google Search Console. When you deploy a bucket with a domain name as a bucket name you need to prove that you are the owner of it. So I added my service account as owner of my domain to solve any issue.
