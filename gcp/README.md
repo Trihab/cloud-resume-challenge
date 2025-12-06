@@ -25,3 +25,12 @@ I created a vault to store the gcp service account key so that I could safely pu
 ## Domain Ownership
 
 I had to verify the ownership of my domain through Google Search Console. When you deploy a bucket with a domain name as a bucket name you need to prove that you are the owner of it. So I added my service account as owner of my domain to solve any issue.
+
+## Cloud CDN
+
+It seems that cloud CDN is expensive so I will use a cost effective solution. I will try with CloudFlare instead. CloudFlare has a free tier for CDN service it fits perfectly my budget :)
+
+## CloudFlare and GCP
+
+GCP expects the header to be the same the domain for static website hosting.
+To properly redirect I need to create rules within CloudFlare. But I will need a worker to serve content from the bucket.
