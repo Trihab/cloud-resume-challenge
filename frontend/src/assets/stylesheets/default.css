@@ -73,6 +73,7 @@ nav a:hover {
    =========================== */
 html {
   scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth;
 }
 html::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */

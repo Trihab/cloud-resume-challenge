@@ -21,7 +21,7 @@ export default function ProjectsPage() {
                     
                     <div className="cta-buttons">
                         <NavLink to="/projects" className="btn btn-primary">Discover my projects</NavLink>{" "}
-                        <NavLink to="/resume" className="btn btn-secondary">Get in touch</NavLink>{" "}
+                        <a class="btn btn-secondary" href="#contact-footer">Get in touch</a>
                     </div>
                 </div>
                 

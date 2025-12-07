@@ -37,7 +37,7 @@ To properly redirect I need to create rules within CloudFlare. But I will need a
 
 ## Terraform State
 
-To store my tf state remotely I setted up a S3 bucket on AWS. I created a `backend.tf` file with the configuration in my `config.s3.tfbackend`.
+To store my tf state remotely I set up a S3 bucket on AWS. I created a `backend.tf` file with the configuration in my `config.s3.tfbackend`.
 
 Whenever I need to init terraform I just run: 
 ```bash

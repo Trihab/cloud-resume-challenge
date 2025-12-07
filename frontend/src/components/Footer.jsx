@@ -12,7 +12,7 @@ export default function Footer() {
                         <p>Feel free to contact me !</p>
                     </div>
 
-                    <div className="social-links">
+                    <div id="contact-footer" className="social-links">
                         {/* LinkedIn */}
                         <a href="https://www.linkedin.com/in/tristan-habert-059649213/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
