@@ -1,0 +1,30 @@
+---
+- name: Purge CloudFlare Cache
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  
+  vars_files:
+    - vaults/prod.yml
+
+  vars:
+    cloudflare_api_t: "{{ cloudflare_api_token }}"
+    cloudflare_zone: "{{ cloudflare_zone_id }}"
+
+  tasks:
+    - name: Purge entire Cloudflare cache
+      ansible.builtin.uri:
+        url: "https://api.cloudflare.com/client/v4/zones/{{ cloudflare_zone }}/purge_cache"
+        method: POST
+        headers:
+          Authorization: "Bearer {{ cloudflare_api_t }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          purge_everything: true
+        status_code: 200
+      register: purge_result
+
+    - name: Verify Purge Success
+      ansible.builtin.debug:
+        msg: "Cache purged successfully: {{ purge_result.json.success }}"

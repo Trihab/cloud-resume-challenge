@@ -7,20 +7,14 @@
   vars_files:
     - vaults/prod.yml
   vars:
-    # --- CONFIGURATION ---
-    # Chemin vers la racine de votre projet Vue/Vite (là où est package.json)
     project_root: "{{ playbook_dir }}/../../frontend"
     build_dir: "{{ project_root }}/dist"
-    # Nom du bucket (SANS points si possible, sinon voir étape précédente)
     portfolio_bucket_name: "thbt.ovh"
-    # Chemin temporaire pour la clé
     gcp_key_temp_path: "{{ playbook_dir }}/gcp_pipeline_key.json"
+    cloudflare_api_t: "{{ cloudflare_api_token }}"
+    cloudflare_zone: "{{ cloudflare_zone_id }}"
 
   tasks:
-
-    # ==========================================
-    # ÉTAPE 1 : INSTALLATION DE GCLOUD CLI
-    # ==========================================
     - name: Check if gcloud is installed
       ansible.builtin.command: gcloud --version
       register: gcloud_check
@@ -63,9 +57,6 @@
       when: gcloud_check.rc != 0
       tags: install_gcloud
 
-    # ==========================================
-    # ÉTAPE 2 : BUILD VITEJS (Node)
-    # ==========================================
     - name: Build Vite Application
       block:
         - name: Install Node Dependencies (npm install)
@@ -79,12 +70,8 @@
             chdir: "{{ project_root }}"
       tags: build
 
-    # ==========================================
-    # ÉTAPE 3 : UPLOAD VERS GCS
-    # ==========================================
     - name: Deploy to Cloud Storage
       block:
-        # 1. Création fichier clé temporaire
         - name: Create temporary GCP credential file
           ansible.builtin.copy:
             content: "{{ vault_gcp_key }}"
@@ -92,16 +79,31 @@
             mode: '0600'
           no_log: true
 
-        # 2. Authentification explicite de gcloud
         - name: Activate Service Account in gcloud
           ansible.builtin.command:
             cmd: "gcloud auth activate-service-account --key-file={{ gcp_key_temp_path }}"
           changed_when: false
 
-        # 3. Synchronisation ultra-rapide (Rsync supprime aussi les vieux fichiers)
         - name: Sync Build folder to Bucket
           ansible.builtin.command:
             cmd: "gcloud storage rsync -r {{ build_dir }} gs://{{ portfolio_bucket_name }}"
+
+        - name: Purge entire Cloudflare cache
+          ansible.builtin.uri:
+            url: "https://api.cloudflare.com/client/v4/zones/{{ cloudflare_zone }}/purge_cache"
+            method: POST
+            headers:
+              Authorization: "Bearer {{ cloudflare_api_t }}"
+              Content-Type: "application/json"
+            body_format: json
+            body:
+              purge_everything: true
+            status_code: 200
+          register: purge_result
+
+        - name: Verify Purge Success
+          ansible.builtin.debug:
+            msg: "Cache purged successfully: {{ purge_result.json.success }}"
       
       always:
         - name: Remove temporary GCP credential file
