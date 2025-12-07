@@ -34,3 +34,12 @@ It seems that cloud CDN is expensive so I will use a cost effective solution. I 
 
 GCP expects the header to be the same the domain for static website hosting.
 To properly redirect I need to create rules within CloudFlare. But I will need a worker to serve content from the bucket.
+
+## Terraform State
+
+To store my tf state remotely I setted up a S3 bucket on AWS. I created a `backend.tf` file with the configuration in my `config.s3.tfbackend`.
+
+Whenever I need to init terraform I just run: 
+```bash
+terraform init -backend-config="./config.s3.tfbackend"
+```
