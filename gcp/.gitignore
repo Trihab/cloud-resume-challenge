@@ -3,3 +3,6 @@ gcp_key*
 
 *.tfstate
 *.tfbackend
+
+.bundle/
+vendor

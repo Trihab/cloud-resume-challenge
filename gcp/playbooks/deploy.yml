@@ -7,7 +7,6 @@
     - vaults/prod.yml
   vars:
     gcp_key_temp_path: "{{ playbook_dir }}/gcp_deploy_key.json"
-    portfolio_bucket_name: "thbt.ovh"
   tasks:
     - name: Infrastructure Deployment Block
       block:
@@ -30,8 +29,6 @@
             project_path: "{{ playbook_dir }}/../../gcp"
             state: present
             force_init: true
-            variables:
-              bucket_name: "{{ portfolio_bucket_name }}"
           environment:
             GOOGLE_APPLICATION_CREDENTIALS: "{{ gcp_key_temp_path }}"
           register: terraform_output

@@ -4,7 +4,7 @@ I manage Terraform using Infrastructure Manager in GCP.
 
 ## Authentication
 
-I created a Service Account for Terraform deployment with Infrastructure Administrator rights.
+I created a Service Account for Terraform deployment with Infrastructure Administrator rights. For this project, I had to manage my service account's permissions while adhering to the principle of least privilege.
 To connect we use a json key that we can export to env variable. We can also export it to our `.bashrc` to make it permanent.
 
 ```bash
@@ -42,4 +42,24 @@ To store my tf state remotely I set up a S3 bucket on AWS. I created a `backend.
 Whenever I need to init terraform I just run: 
 ```bash
 terraform init -backend-config="./config.s3.tfbackend"
+```
+
+## Function
+
+I use Ruby to code my cloud function because it is supported by GCP Function. It is an opportunity for me to discover new language other than python.
+
+Init ruby function:
+
+```bash
+# To make sure you don't need sudo
+bundle config set --local path 'vendor/bundle'
+# Install dependencies
+bundle install
+# Ensure Cloud Functions support the platform
+bundle lock --add-platform x86_64-linux
+```
+
+To try it out before deploying it, you can run:
+```bash
+bundle exec functions-framework --target <FUNCTION_NAME> --port 8080
 ```
