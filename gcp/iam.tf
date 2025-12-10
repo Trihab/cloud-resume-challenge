@@ -32,7 +32,7 @@ resource "google_project_iam_member" "fn_firestore_user" {
 
 ## Cloud Function
 resource "google_cloud_run_service_iam_member" "public_invoker" {
-  service = google_cloudfunctions2_function.gcp_fn.name
+  service = google_cloudfunctions2_function.gcp_fn.service_config[0].service
   role    = "roles/run.invoker"
   member  = "allUsers"
   location = google_cloudfunctions2_function.gcp_fn.location
