@@ -94,7 +94,7 @@ end
 # ======================
 # HTTP Entry Point
 # ======================
-FunctionsFramework.http "hello_http" do |request|
+FunctionsFramework.http "counter_update" do |request|
   # Handle CORS preflight early
   if request.request_method == "OPTIONS"
     next no_content_response(request)

@@ -5,7 +5,7 @@ resource "google_cloudfunctions2_function" "gcp_fn" {
 
   build_config {
     runtime     = "ruby33"
-    entry_point = "hello_http"
+    entry_point = "counter_update"
     source {
       storage_source {
         bucket = var.function_bucket_name
