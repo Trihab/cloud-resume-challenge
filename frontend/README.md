@@ -1,6 +1,6 @@
 # Frontend Technical Specification
 
-- Create a static website that serves an html resume.
+- Create a static website that serves an html resume. I will use it as my personnal portfolio.
 
 ## Resume Format Considerations
 
@@ -20,7 +20,7 @@ Please use the least amount of css tags.
 
 ## Styling
 
-I use GenAI to do the CSS part. 
+I use GenAI to do the CSS part.
 
 ## Hosting Website Locally
 

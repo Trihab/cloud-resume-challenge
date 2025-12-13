@@ -1,6 +1,6 @@
 # Terraform X GCP section
 
-I manage Terraform using Infrastructure Manager in GCP. 
+I use Terraform to deploy my infrastructure in GCP. 
 
 ## Authentication
 
@@ -39,6 +39,15 @@ To properly redirect I need to create rules within CloudFlare. But I will need a
 
 To store my tf state remotely I set up a S3 bucket on AWS. I created a `backend.tf` file with the configuration in my `config.s3.tfbackend`.
 
+Inside the config file, you need to set those variables:
+
+```bash
+region = "<REGION>"
+bucket= "<BUCKET_NAME>"
+key = "<STATE_FILE_NAME>"
+use_lockfile = true # Avoid being used by multiple deployment at the same time causing errors
+```
+
 Whenever I need to init terraform I just run: 
 ```bash
 terraform init -backend-config="./config.s3.tfbackend"
@@ -63,3 +72,9 @@ To try it out before deploying it, you can run:
 ```bash
 bundle exec functions-framework --target <FUNCTION_NAME> --port 8080
 ```
+
+## Issues
+
+I ran into an issue while bundling Ruby. Cloud build was not able to fetch the latest version of gRPC and Google-protobuf. The solution I found was to downgrade from `Ruby 3.4` to `Ruby 3.3`. Then I did fix versions that are compatible to `Ruby 3.3` :
+ - google-protobuf (~> 3.25)
+ - grpc (= 1.67)
