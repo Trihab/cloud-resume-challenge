@@ -3,11 +3,11 @@ import gcp_logo from 'images/icon_gcp.png'
 const resumeData = {
     person: {
         name: "Tristan Habert",
-        job_title: "Cloud Architect",
+        job_title: "Cloud Engineer",
         contact: {
             email: "habert.tristan@gmail.com",
         },
-        description: "Master GCP tools to lead your company building a reliable infrastructure at scale."
+        description: "Master GCP and AWS tools to lead your company building a reliable infrastructure at scale."
     },
     sections: {
         certif: [
