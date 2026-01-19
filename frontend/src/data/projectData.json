@@ -1,16 +1,18 @@
 [
   {
     "id": "project1",
-    "name": "Project 1",
-    "thumbnail": "https://placehold.co/320x200",
-    "description": "My really ambitious project.",
-    "body_html": "<h1>Frontend Technical Specification</h1>\n<ul>\n<li>Create a static website that serves an html resume.</li>\n</ul>\n<h2>Resume Format Considerations</h2>\n<p>I use my own resume template found on Canva.</p>"
+    "name": "CRC 2025",
+    "thumbnail": "/assets/gcp_icon.png",
+    "description": "I attend the Cloud Resume Challenge this year using the GCP provider. You can find the Github link below.",
+    "link": "https://github.com/Trihab/cloud-resume-challenge",
+    "body_html": "<h1>🏆 Cloud Resume Challenge (Google Cloud Platform)</h1>\n<p>The Cloud Resume Challenge is a hands-on project designed for cloud professionals. My goal was to design and deploy my online portfolio within two weeks using IaC on <strong>Google Cloud Platform (GCP)</strong>.</p>\n<h2>🚀 Skills </h2>\n<p>This end-to-end project validated key skills in Cloud Engineering (DevOps/Cloud Computing), and Infrastructure as Code (IaC).</p>\n<h3>🛠️ GCP Services &amp; Tools</h3>\n<ul>\n<li><strong>Infrastructure as Code (IaC) :</strong> <strong>Terraform / Ansible</strong></li>\n<li><strong>Frontend Hosting :</strong> <strong>GCP Cloud Storage</strong></li>\n<li><strong>Backend Serverless :</strong> <strong>GCP Cloud Functions</strong></li>\n<li><strong>Database :</strong> <strong>Google Firestore</strong></li>\n<li><strong>Caching / CDN :</strong> <strong>Cloudflare</strong></li>\n</ul>\n<h3>🎯 Key Achievements and Learnings</h3>\n<h4>1. Infrastructure as Code (IaC)</h4>\n<ul>\n<li>Provisioned and managed the complete GCP stack (Cloud Storage, Cloud Functions, and Firestore) with <strong>Terraform</strong>. </li>\n<li>Ensured a reproducible and version-controlled infrastructure. </li>\n</ul>\n<h4>2. Architecture Frontend et Distribution</h4>\n<ul>\n<li>Application hosting via <strong>GCP Cloud Storage Bucket</strong>. </li>\n<li>Configured <strong>Cloudflare</strong> for caching and Content Delivery Network (CDN), demonstrating a cost-effective approach compared to GCP's Cloud CDN or Load Balancing.</li>\n</ul>\n<h4>3. Backend Serverless and Database</h4>\n<ul>\n<li>Architected and implemented a <strong>serverless API</strong> powered by <strong>Cloud Functions</strong> to manage backend business logic.</li>\n<li>Implemented API endpoints to retrieve and update view counts for the project page.</li>\n<li>Leveraged <strong>Google Firestore (NoSQL)</strong> for visitor counter data storage and persistence. </li>\n</ul>\n<h3>Skills Summary</h3>\n<ul>\n<li><strong>Cloud Computing (GCP)</strong> </li>\n<li><strong>Architecture Serverless</strong> </li>\n<li><strong>Infrastructure as Code (Terraform / Ansible)</strong> </li>\n<li><strong>API REST &amp; Firestore</strong> </li>\n<li><strong>FinOps</strong></li>\n</ul>"
   },
   {
     "id": "project2",
-    "name": "Project 2",
-    "thumbnail": "https://placehold.co/320x200",
-    "description": "My really ambitious project.",
-    "body_html": "<h1>My Project 2</h1>"
+    "name": "EKS Cluster",
+    "thumbnail": "/assets/GCP_AWS.png",
+    "description": "I had a project where I needed to deploy an EKS cluster with addons like kube-proxy, core-dns and vpc-cni.",
+    "link": "",
+    "body_html": "<h2><strong>PROJET</strong></h2>\n<p>Création d'un cluster EKS via <strong>Terraform</strong>\n<strong>Setup :\n** <code>terraform init -backend-config='./config.s3.tfbackend'</code> (configuration du backend S3) suivi de <code>terraform plan</code> et <code>terraform apply --auto-approve</code>.\n</strong>Tests :\n** Connexion SSH à l'instance EC2 générée via <code>ssh -i 'key.pem' ec2_user@&lt;IP_PUB&gt;</code> et vérification du service web <strong>httpd</strong> via <code>http://&lt;IP_PUB&gt;</code>.\n<strong>Standardisation DevOps :\n** Utilisation d'un </strong>Makefile** pour standardiser le workflow de déploiement (commandes <code>make init ARGS='...'</code>, <code>make plan</code>, <code>make apply</code>, <code>make destroy</code>).</p>"
   }
 ]

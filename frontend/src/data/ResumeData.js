@@ -7,7 +7,7 @@ const resumeData = {
         contact: {
             email: "habert.tristan@gmail.com",
         },
-        description: "Master GCP and AWS tools to lead your company building a reliable infrastructure at scale."
+        description: "Master GCP tools to lead your company building a reliable infrastructure at scale."
     },
     sections: {
         certif: [
@@ -21,6 +21,11 @@ const resumeData = {
                 date: "Underway",
                 icon: gcp_logo,
             },
+            {
+                title: "Google Professional Cloud Architect",
+                date: "Underway",
+                icon: gcp_logo,
+            }
         ],
         languages: {
             first: "English",
