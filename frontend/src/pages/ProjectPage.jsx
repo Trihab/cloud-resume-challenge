@@ -14,6 +14,7 @@ export default function ProjectsPage() {
             <NavLink to="/projects"><ChevronLeft/>Back to Projects</NavLink>{" "}
             <h1>{project.name}</h1>
             <p>{project.description}</p>
+            <a href="https://github.com/Trihab/cloud-resume-challenge">{project.link}</a>
 
             <div className="markdown" dangerouslySetInnerHTML={{ __html: project.body_html }}></div>
         </div>
