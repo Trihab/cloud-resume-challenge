@@ -7,7 +7,7 @@ const resumeData = {
         contact: {
             email: "habert.tristan@gmail.com",
         },
-        description: "Master GCP tools to lead your company building a reliable infrastructure at scale."
+        description: "Mastering GCP services to build reliable and scalable infrastructure for your organization."
     },
     sections: {
         certif: [
