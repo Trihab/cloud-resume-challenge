@@ -10,9 +10,9 @@
   {
     "id": "project2",
     "name": "EKS Cluster",
-    "thumbnail": "/assets/GCP_AWS.png",
-    "description": "I had a project where I needed to deploy an EKS cluster with addons like kube-proxy, core-dns and vpc-cni.",
-    "link": "",
-    "body_html": "<h2><strong>PROJET</strong></h2>\n<p>Création d'un cluster EKS via <strong>Terraform</strong>\n<strong>Setup :\n** <code>terraform init -backend-config='./config.s3.tfbackend'</code> (configuration du backend S3) suivi de <code>terraform plan</code> et <code>terraform apply --auto-approve</code>.\n</strong>Tests :\n** Connexion SSH à l'instance EC2 générée via <code>ssh -i 'key.pem' ec2_user@&lt;IP_PUB&gt;</code> et vérification du service web <strong>httpd</strong> via <code>http://&lt;IP_PUB&gt;</code>.\n<strong>Standardisation DevOps :\n** Utilisation d'un </strong>Makefile** pour standardiser le workflow de déploiement (commandes <code>make init ARGS='...'</code>, <code>make plan</code>, <code>make apply</code>, <code>make destroy</code>).</p>"
+    "thumbnail": "/assets/aws_icon.png",
+    "description": "In this project, I deployed an EKS cluster leveraging Terraform.",
+    "link": "https://github.com/Trihab/tf_eks",
+    "body_html": "<h2>🚀 Skills </h2>\n<p>This end-to-end project validated key skills in Cloud Engineering (DevOps/Cloud Computing), and Infrastructure as Code (IaC).</p>\n<h3>🛠️ AWS Services &amp; Tools</h3>\n<ul>\n<li><strong>Infrastructure as Code (IaC) :</strong> <strong>Terraform</strong></li>\n<li><strong>Compute :</strong> <strong>EC2 / EKS</strong></li>\n<li><strong>Networking :</strong> <strong>AWS VPC / NAT Gateway / AWS Internet Gateway / ELB (load balancer)</strong></li>\n<li><strong>IAM :</strong> <strong>AWS IAM</strong></li>\n</ul>\n"
   }
 ]
