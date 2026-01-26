@@ -5,6 +5,10 @@ export default function ViewCounter() {
     const API_URL = import.meta.env.VITE_COUNTER_API_URL;
 
     const syncViews = async (method = "GET") => {
+        if (!API_URL) {
+            console.error("Erreur: VITE_COUNTER_API_URL n'est pas définie !");
+            return;
+        }
         try {
             const response = await fetch(API_URL, { method });
             if (response.ok) {
